@@ -1,1 +1,110 @@
-цувакпрол
+#include <iostream>
+using namespace std;
+
+struct laptop{
+    string company;
+    string model;
+    long int price;
+    int op;
+    string os;
+    int count;
+};
+
+laptop a[100];
+
+void info(){
+    a[0].company =  "ASUS";
+    a[0].model = "I-S45F";
+    a[0].price = 199990 ;
+    a[0].op = 4;
+    a[0].os = "Win 10";
+    a[0].count = 10;
+
+    a[1].company =  "Apple";
+    a[1].model = "MacBook 2021";
+    a[1].price = 1300000;
+    a[1].op = 12;
+    a[1].os = "Mac OS";
+    a[1].count = 20;
+
+    a[2].company =  "HP";
+    a[2].model = "Pavilion 3F7GG";
+    a[2].price = 390000;
+    a[2].op = 16;
+    a[2].os = "Win 10";
+    a[2].count = 15;
+
+}
+
+void print(){
+    int sum=0;
+    for (int i=0; i<3; i++){
+        cout<<a[i].company<<endl;
+        cout<<a[i].model<<endl;
+        cout<<a[i].price<<endl;
+        cout<<a[i].op<<endl;
+        cout<<a[i].os<<endl;
+        cout<<endl;
+        sum += a[i].price*a[i].count;
+    }
+
+}
+laptop korzina[20];
+int cnt=0;
+double korzinaSum(){
+    double sum=0;
+    for (int i = 0; i < cnt; ++i){
+        sum+= korzina[i].price*korzina[i].count;
+    }
+    return sum;
+}
+void vashakorzina(){
+    //ekranga();
+    cout<<"Vasha korzina: "<<korzinaSum();
+    cout<<"\nNomer tovara: ";
+    int z, s;
+    cin>>z;
+    if (z>=1 && z<=4){
+        cout<<"\nSkolko shtyk tovara? ";
+        cin>>s;
+        if (a[z-1].count>=s){
+            korzina[cnt].model = a[z-1].model;
+            korzina[cnt].price = a[z-1].price;
+            korzina[cnt].count = s;
+            a[z-1].count = a[z-1].count-s;
+            cnt++;
+        }
+        else {
+            cout<<"Otsutsvuet takoe kolichestvo\n";
+        }
+    }
+    else{
+        cout<<"Oshibka: takogo tovara net\n";
+    }
+}
+int main(){
+    info();
+    cout<<"Zdravstvuyte\n";
+    while(true){
+        cout<<"1-Spisok tovarov\n";
+        cout<<"2-Vibor tovarov\n";
+        cout<<"3-Vyity\n";
+        int t;
+        cin>>t;
+        if (t==1){
+            print();
+        }
+        else if (t==2) {
+            vashakorzina();
+        }
+        else if (t==3){
+            vashakorzina();
+            cout<<" tenge.";
+            break;
+        }
+        else{
+            cout<<"Poprobuyte snova\n";
+        }
+    }
+    return 0;
+}
